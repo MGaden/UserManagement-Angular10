@@ -1,0 +1,9 @@
+<div class="progress-wrapper">
+  <div class="money-left">left {{dashBoardData.left | currency:'USD'}}</div>
+  <div class="category-name">{{dashBoardData.name}}</div>
+  <div class="progress-bar-container">
+    <div class="money-spent">{{dashBoardData.currentExpenses | currency:'USD':'symbol':'1.0'}} / {{dashBoardData.maxExpenses | currency:'USD':'symbol':'1.0'}}</div>
+    <div class="progress-bar" [style.width]="dashBoardData.leftPercentage"></div>
+    <div class="today" [style.left]="today"></div>
+  </div>
+</div>
