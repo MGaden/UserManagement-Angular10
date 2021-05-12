@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
-    private service: TranslocoService) { }
+    public service: TranslocoService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({

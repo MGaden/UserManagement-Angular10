@@ -13,7 +13,7 @@ export class OtpComponent {
     private dialogRef: MatDialogRef<OtpComponent>,
     @Inject(MAT_DIALOG_DATA) public otpValue: string) { }
 
-  verify(result: number) {
+  verify(result: string) {
     this.dialogRef.close(result);
   }
 
