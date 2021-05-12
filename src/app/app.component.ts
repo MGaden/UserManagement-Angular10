@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IdleService } from './core/userIdle.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(
+    public idleService : IdleService
+  ) {
+
+  }
+
+  ngOnInit(): void {
+    this.idleService.intiateIdleTimeout();
+  }
+  
 }

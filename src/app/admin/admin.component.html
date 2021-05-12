@@ -1,10 +1,19 @@
 <mat-toolbar color="primary">
-  <span>{{userEmail$ | async}}</span>
+  <span class="center">{{userEmail$ | async}}</span>
   <span class="right btn" (click)="logout()">Logout</span>
+  <span class="btn" routerLink="/app/dashboard">Home</span>
 </mat-toolbar>
 
 <mat-card>
-  <h2>Active sessions</h2>
+
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link *ngFor="let item of menuItems" [routerLink]="item"
+      routerLinkActive #link="routerLinkActive"
+      [active]="link.isActive">{{ item | titlecase }}</a>
+  </nav>
+  <router-outlet></router-outlet>
+  
+  <!-- <h2>Active sessions</h2>
 
   <mat-table [dataSource]="sessions">
 
@@ -28,6 +37,6 @@
       </mat-cell>
     </ng-container>
 
-  </mat-table>
+  </mat-table> -->
 
 </mat-card>

@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    children: [
+      { path: 'roles', loadChildren: () => import('./roles/roles.module').then(m => m.RolesModule) },
+      { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
+    ],
   },
 ];
 

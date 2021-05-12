@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { config } from '../../../core/config';
 
 @Injectable()
 export class SecretApi {
 
-  private readonly API_URL = `${config.apiUrl}/secret`;
+  private readonly API_URL = `/secret`;
 
   constructor(private http: HttpClient) {}
 

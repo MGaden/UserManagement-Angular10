@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -16,10 +16,12 @@ export class AdminComponent implements OnInit {
 
   public userEmail$: Observable<string>;
   public sessions = new MatTableDataSource();
+  menuItems = ['users','roles'];
 
-  constructor(private authService: AuthService, private adminService: AdminService, private router: Router) { }
+  constructor(private authService: AuthService, private adminService: AdminService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.router.navigate(['users'], { relativeTo: this.route });
     this.userEmail$ = this.authService.getUserEmail$();
     this.loadSessions$().subscribe();
   }

@@ -23,7 +23,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/theme.scss"
+              "src/theme.scss",
+              "src/assets/css/kendo-all.css"
             ],
             "scripts": []
           },

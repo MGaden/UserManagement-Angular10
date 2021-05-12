@@ -18,6 +18,7 @@ import { ForRolesDirective } from './directives/for-roles.directive';
 import { PasswordComponent } from './containers/password/password.component';
 import { RecoverComponent } from './containers/recover/recover.component';
 import { OtpComponent } from './components/otp-dialog/otp.component';
+import { TranslocoRootModule } from 'app/transloco/transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { OtpComponent } from './components/otp-dialog/otp.component';
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    TranslocoRootModule
   ],
   providers: [
     {

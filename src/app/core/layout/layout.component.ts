@@ -28,6 +28,7 @@ export class LayoutComponent implements AfterViewInit, OnDestroy {
     iconRegistry.addSvgIcon('settings', sanitizer.bypassSecurityTrustResourceUrl('assets/settings.svg'));
     iconRegistry.addSvgIcon('edit', sanitizer.bypassSecurityTrustResourceUrl('assets/edit.svg'));
     iconRegistry.addSvgIcon('remove', sanitizer.bypassSecurityTrustResourceUrl('assets/remove.svg'));
+    iconRegistry.addSvgIcon('admin', sanitizer.bypassSecurityTrustResourceUrl('assets/admin.svg'));
 
     this.routerSub = router.events.subscribe(e => {
       if (e instanceof NavigationStart || e instanceof ActivationStart) {

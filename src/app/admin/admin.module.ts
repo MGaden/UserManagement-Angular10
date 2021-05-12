@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminService } from './admin.service';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { AdminService } from './admin.service';
     MatToolbarModule,
     MatTableModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule
   ],
   declarations: [AdminComponent],
   providers: [AdminService]

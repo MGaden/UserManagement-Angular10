@@ -1,29 +1,37 @@
-table {
-  margin: auto;
-}
+// table {
+//   margin: auto;
+// }
 
-.summary {
-  display: flex;
-  flex-wrap: wrap;
-}
+// .summary {
+//   display: flex;
+//   flex-wrap: wrap;
+// }
 
-.summary-table {
-  flex: 1 0;
-  & table {
-    width: 100%;
-    padding: 0 20px;
-  }
-}
+// .summary-table {
+//   flex: 1 0;
+//   & table {
+//     width: 100%;
+//     padding: 0 20px;
+//   }
+// }
 
-@media screen and (min-width : 768px) {
-  .summary-table table {
-    padding: 0 15%;
-  }
-}
+// @media screen and (min-width : 768px) {
+//   .summary-table table {
+//     padding: 0 15%;
+//   }
+// }
 
-.value {
-  text-align: right;
-  font-weight: bold;
-  padding-left: 15px;
-  font-size: 18px;
-}
+// .value {
+//   text-align: right;
+//   font-weight: bold;
+//   padding-left: 15px;
+//   font-size: 18px;
+// }
+
+// .k-grid .no-padding {
+//   padding: 0;
+// }
+//  .whole-cell {
+//    display: block;
+//    padding: 8px 12px; /* depends on theme */
+//  }

@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { config } from '../../core/config';
 import { Expense } from '@models/expense';
 import { Period } from '@models/period';
 import { User } from '@models/user';
 import { ChangePasswordRequest } from '@models/changePasswordRequest';
+import { AppConsts } from 'app/core/config';
 
 @Injectable()
 export class ManageUserApi {
   
-  private readonly API_URL = `${config.apiUrl}/manage`;
+  private readonly API_URL = `${AppConsts.authApiUrl}` + `${AppConsts.manageUrl}`;
 
   constructor(private http: HttpClient) {}
 
@@ -40,7 +40,7 @@ export class ManageUserApi {
   }
 
   sendConfirmMail(id: string): Observable<void> {
-    return this.http.post<void>(`${this.API_URL}/sendVerificationEmail`,{ clientCallbackUrl :  config.emailConfirmCallBackUrl});
+    return this.http.post<void>(`${this.API_URL}/sendVerificationEmail`,{ clientCallbackUrl :  AppConsts.frontEndUrl + '/confirm'});
   }
 
 }

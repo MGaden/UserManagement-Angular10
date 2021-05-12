@@ -1,10 +1,10 @@
-
+<div dir="{{(service.getActiveLang() == 'ar')?'rtl':'ltr'}}">
 <form [formGroup]="loginForm">
 
   <div class="header">Login to your account</div>
 
   <mat-form-field>
-    <input matInput id="email" placeholder="Username or Email" autocomplete="off" formControlName="email" required>
+    <input matInput id="email" placeholder="{{'usernameOrEmail' | transloco}}" autocomplete="off" formControlName="email" required>
   </mat-form-field>
 
   <mat-form-field>
@@ -24,4 +24,13 @@
     <button mat-stroked-button type="button" routerLink="/recover">Recover password</button>
   </div>
 
+  <mat-form-field appearance="fill">
+    <select matNativeControl>
+      <option value="en" [value]="en" (click)="changeSiteLanguage('en')">English</option>
+      <option value="ar" [value]="ar" (click)="changeSiteLanguage('ar')">Arabic</option>
+    </select>
+  </mat-form-field>
+
+
 </form>
+</div>

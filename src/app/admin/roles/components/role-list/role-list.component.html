@@ -1,0 +1,15 @@
+<mat-expansion-panel *ngFor="let user of roles$ | async">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{user.email}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <role-form
+    [editMode]="true"
+    [user]="user"
+    (userUpdated)="updateRole($event)">
+  </role-form>
+
+</mat-expansion-panel>

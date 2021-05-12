@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../shared/components/snackbar/snackbar.component';
-import { config } from '../core/config';
+import { AppConsts } from './config';
 
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
@@ -29,7 +29,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   // when Node backend is not running, then logged user query fails; let's not show the error
   private isQueryForLoggedUser(error: HttpErrorResponse) {
-    return error.url.endsWith(`${config.authUrl}/user`);
+    return error.url.endsWith(`${AppConsts.authApiUrl}${AppConsts.userUrl}`);
   }
 
   private isOtpRequired(error: HttpErrorResponse) {

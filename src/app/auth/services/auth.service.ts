@@ -4,13 +4,13 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { tap, map, catchError } from 'rxjs/operators';
 
-import { config} from '../../core/config';
 import { CacheService } from '../../core/cache.service';
 import { AuthStrategy, AUTH_STRATEGY } from './auth.strategy';
 import { LoginRequest } from '@models/loginRequest';
 import { User } from '@models/user';
 //import { Role } from '@models/types';
 import { SignUpRequest } from '@models/signUpRequest';
+import { AppConsts } from 'app/core/config';
 
 @Injectable({
   providedIn: 'root'
@@ -72,29 +72,25 @@ export class AuthService {
     @Inject(AUTH_STRATEGY) private auth: AuthStrategy<any>
   ) { }
 
-  // getInitialPathForRole(role: Role): string {
-  //   return role === 'ADMIN' ? this.ADMIN_PATH : this.INITIAL_PATH;
-  // }
-
   signup(user: SignUpRequest): Observable<void> {
-    user.clientCallbackUrl = config.emailConfirmCallBackUrl;
-    return this.http.post<any>(`${config.authUrl}/register`, user);
+    user.clientCallbackUrl = AppConsts.frontEndUrl + '/confirm';
+    return this.http.post<any>(`${AppConsts.authApiUrl}${AppConsts.authUrl}/register`, user);
   }
 
   confirm(userId: string, code: string): Observable<void> {
-    return this.http.post<any>(`${config.authUrl}/confirmEmail`, {userId : userId, code : code});
+    return this.http.post<any>(`${AppConsts.authApiUrl}${AppConsts.authUrl}/confirmEmail`, {userId : userId, code : code});
   }
 
   login(loginRequest: LoginRequest, rememberMe : boolean): Observable<User> {
 
     this.auth.setRememberMe(rememberMe);
 
-    return this.http.post<any>(`${config.authUrl}/token`, loginRequest)
+    return this.http.post<any>(`${AppConsts.authApiUrl}${AppConsts.authUrl}/token`, loginRequest)
       .pipe(tap(data => this.auth.doLoginUser(data)));
   }
 
   logout() {
-    return this.http.delete<any>(`${config.manageUrl}/logout`)
+    return this.http.delete<any>(`${AppConsts.authApiUrl}${AppConsts.manageUrl}/logout`)
       .pipe(tap(() => this.doLogoutUser()),catchError(() => of(this.doLogoutUser())));
   }
 
@@ -132,25 +128,13 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.http.post<any>(`${config.authUrl}/refreshToken`, this.auth.getRefreshTokenRequest())
+    return this.http.post<any>(`${AppConsts.authApiUrl}${AppConsts.authUrl}/refreshToken`, this.auth.getRefreshTokenRequest())
       .pipe(tap(data => this.auth.doLoginUser(data)));
 }
 
-// helper methods
-
-// private refreshTokenTimeout;
-
-// public startRefreshTokenTimer() {
-//     // parse json object from base64 encoded jwt token
-//     const jwtToken = JSON.parse(atob(this.auth.getToken().split('.')[1]));
-//     // set a timeout to refresh the token a minute before it expires
-//     const expires = new Date(jwtToken.exp * 1000);
-//     const timeout = expires.getTime() - Date.now() - (60 * 1000);
-//     this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
-// }
-
-// private stopRefreshTokenTimer() {
-//     clearTimeout(this.refreshTokenTimeout);
-// }
+getRememberMe() : boolean
+{
+  return this.auth.getRememberMe();
+}
 
 }

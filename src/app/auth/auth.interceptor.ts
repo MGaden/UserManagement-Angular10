@@ -3,7 +3,6 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
 
-import { config } from '../core/config';
 import { AuthService } from './services/auth.service';
 import { JwtAuthStrategy } from './services/jwt-auth.strategy';
 import { AUTH_STRATEGY } from './services/auth.strategy';
@@ -15,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (config.auth === 'token' && this.jwt && this.jwt.getToken()) {
+    if (this.jwt && this.jwt.getToken()) {
       request = this.addToken(request, this.jwt.getToken());
     }
 

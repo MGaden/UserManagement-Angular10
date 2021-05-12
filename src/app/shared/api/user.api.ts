@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '@models/user';
+import { AppConsts } from 'app/core/config';
 import { Observable } from 'rxjs';
-
-import { config } from '../../core/config';
 
 @Injectable()
 export class UserApi {
 
-  private API_URL = `${config.apiUrl}/user`;
+  private API_URL = `${AppConsts.authApiUrl}${AppConsts.userUrl}`;
 
   constructor(private http: HttpClient) {}
 

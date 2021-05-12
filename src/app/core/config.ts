@@ -1,16 +1,15 @@
-interface Config {
-  [key: string]: string;
-  auth: 'session' | 'token';
+
+export class AppConsts {
+
+  static authApiUrl: string;
+  static bussinessApiUrl: string;
+  static frontEndUrl: string; 
+  static idelTimeout: number;
+  static idelPeriod: number;
+
+  static readonly userUrl = '/api/user';
+  static readonly authUrl = '/api/auth';
+  static readonly manageUrl = '/api/manage';
+  static readonly orderUrl = '/api/order';
+
 }
-
-// Session auth needs to use the same origin anyway
-export const config: Config = {
-  apiUrl: 'https://localhost:44316/api',
-  userUrl: 'https://localhost:44316/api/user',
-  authUrl: 'https://localhost:44316/api/auth',
-  manageUrl: 'https://localhost:44316/api/manage',
-  forgetPasswordCallBackUrl: 'http://localhost:4200/password',
-  emailConfirmCallBackUrl: 'http://localhost:4200/confirm',
-  auth: 'token'
-};
-

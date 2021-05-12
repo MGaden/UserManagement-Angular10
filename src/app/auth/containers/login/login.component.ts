@@ -11,6 +11,7 @@ import { OtpComponent } from '../../components/otp-dialog/otp.component';
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '@models/loginRequest';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private service: TranslocoService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -71,6 +73,10 @@ export class LoginComponent implements OnInit {
       disableClose: true
     };
     return this.dialog.open(OtpComponent, config).afterClosed();
+  }
+
+  changeSiteLanguage(language: string): void {
+    this.service.setActiveLang(language);
   }
 
 }

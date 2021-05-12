@@ -1,0 +1,23 @@
+<div class="loading-shade" *ngIf="isUpdating$ | async">
+  <mat-spinner *ngIf="isUpdating$ | async"></mat-spinner>
+</div>
+
+<mat-card class="form" *forRoles="['OWNER']">
+
+  <mat-card-header>
+    <mat-card-title>Add new role</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <role-form
+      [role]="newRole"
+      (roleAdded)="addRole($event)">
+    </role-form>
+  </mat-card-content>
+
+</mat-card>
+
+<Role-list
+  [Roles$]="roles$"
+  (roleUpdated)="updateRole($event)">
+</Role-list>

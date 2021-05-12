@@ -3,10 +3,27 @@
     <table>
       <tbody>
         <tr>
-          <td>Total Users</td>
+          <td>{{'usernameOrEmail' | transloco}}</td>
           <td class="value">{{dashboardData?.usersCount}}</td>
         </tr>
       </tbody>
     </table>
   </div>
+</mat-card>
+ 
+<mat-card>
+<kendo-grid [kendoGridBinding]="items"
+[pageable]="true"
+[pageSize]="5"
+[filterable]="true"
+[sortable]="true">
+<kendo-grid-column field="OrderID" width="350" title="ID"></kendo-grid-column>
+<kendo-grid-column field="OrderType" title="Type"></kendo-grid-column>
+<kendo-grid-column>
+  <ng-template kendoGridCellTemplate let-dataItem>
+      <button class="k-button k-primary" (click)="viewOrder(dataItem)">View</button>
+  </ng-template>
+</kendo-grid-column>
+</kendo-grid>
+
 </mat-card>
