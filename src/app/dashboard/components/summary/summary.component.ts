@@ -4,8 +4,7 @@ import { DashboardData } from '@models/dashboardData';
 import { OrderDto } from '@models/order';
 import { DashboardApi } from 'app/dashboard/api/dashboard.api';
 import { SignalRService } from 'app/dashboard/signalr.service';
-import { DataBindingDirective } from '@progress/kendo-angular-grid';
-import { process } from '@progress/kendo-data-query';
+import { ResizeEvent } from 'angular-resizable-element';
 
 @Component({
   selector: 'summary',
@@ -21,18 +20,9 @@ export class SummaryComponent implements OnInit {
   @Input()
   dashboardData: DashboardData;
 
-  constructor(
-    private readonly signalrService: SignalRService,private dashboardApi: DashboardApi,
+  constructor(private dashboardApi: DashboardApi,
   ) {
-    signalrService.itemAdded.subscribe(item => {
-      //this.items = [item, ...this.items];
-      console.log("itemAdded");
-    });
-    signalrService.itemUpdated.subscribe(item => {
-      // this.items = this.items.filter(x => x.id !== item.id);
-      // this.items = [item, ...this.items];
-      console.log("itemUpdated");
-    });
+
   }
   
   getOrders()

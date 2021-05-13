@@ -10,15 +10,19 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslocoRootModule } from 'app/transloco/transloco-root.module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ResizableModule } from 'angular-resizable-element';
+import { WidgetComponent } from './components/widget/widget.component';
 
 @NgModule({
   imports: [
-    SharedModule,GridModule,BrowserAnimationsModule,BrowserModule,TranslocoRootModule
+    SharedModule,GridModule,BrowserAnimationsModule,BrowserModule,TranslocoRootModule,DragDropModule,ResizableModule
   ],
   declarations: [
     DashboardComponent,
     SummaryComponent,
-    DashBoardProgressComponent
+    DashBoardProgressComponent,
+    WidgetComponent
   ],
   exports: [ DashboardComponent ],
   providers: [ DashboardService, DashboardApi ]

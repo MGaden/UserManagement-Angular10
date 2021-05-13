@@ -3,27 +3,77 @@
     <table>
       <tbody>
         <tr>
-          <td>{{'usernameOrEmail' | transloco}}</td>
-          <td class="value">{{dashboardData?.usersCount}}</td>
+          <td> <h3>{{'orderlst' | transloco}}</h3></td>
         </tr>
-      </tbody>
-    </table>
-  </div>
-</mat-card>
- 
-<mat-card>
-<kendo-grid [kendoGridBinding]="items"
+        <tr>
+          <kendo-grid [kendoGridBinding]="items"
 [pageable]="true"
-[pageSize]="5"
+[pageSize]="20"
+[resizable]="true"
+[reorderable]="true"
 [filterable]="true"
 [sortable]="true">
-<kendo-grid-column field="OrderID" width="350" title="ID"></kendo-grid-column>
+<kendo-grid-column field="OrderID" title="ID"></kendo-grid-column>
 <kendo-grid-column field="OrderType" title="Type"></kendo-grid-column>
+<kendo-grid-column field="OrderDate" title="Date"></kendo-grid-column>
+<kendo-grid-column field="SymbolCode" title="Symbol"></kendo-grid-column>
+<kendo-grid-column field="OrderQty" title="Qty"></kendo-grid-column>
+<kendo-grid-column field="RemainingQty" title="Rem Qty"></kendo-grid-column>
+<kendo-grid-column field="OrderPrice" title="Price"></kendo-grid-column>
+<kendo-grid-column field="OrderStatus" title="Status"></kendo-grid-column>
 <kendo-grid-column>
   <ng-template kendoGridCellTemplate let-dataItem>
       <button class="k-button k-primary" (click)="viewOrder(dataItem)">View</button>
   </ng-template>
 </kendo-grid-column>
 </kendo-grid>
-
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </mat-card>
+ 
+<!-- <mat-card>
+
+    <div
+    class="example-box" cdkDrag
+      [ngStyle]="style"
+      mwlResizable
+      [validateResize]="validate"
+      [enableGhostResize]="true"
+      [resizeSnapGrid]="{ left: 50, right: 50 }"
+      (resizeEnd)="onResizeEnd($event)"
+    >
+    test test 
+      <div
+        class="resize-handle-top"
+        mwlResizeHandle
+        [resizeEdges]="{ top: true }"
+      ></div>
+      <div
+        class="resize-handle-left"
+        mwlResizeHandle
+        [resizeEdges]="{ left: true }"
+      ></div>
+      <div
+        class="resize-handle-right"
+        mwlResizeHandle
+        [resizeEdges]="{ right: true }"
+      ></div>
+      <div
+        class="resize-handle-bottom"
+        mwlResizeHandle
+        [resizeEdges]="{ bottom: true }"
+      ></div>
+
+      <div class="example-handle" cdkDragHandle>
+        <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+          <path d="M0 0h24v24H0z" fill="none"></path>
+        </svg>
+      </div>
+
+    </div>
+  
+    
+</mat-card> -->

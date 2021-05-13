@@ -8,8 +8,10 @@ import { Subject } from 'rxjs';
 })
 export class SignalRService {
   private connection: HubConnection;
-  itemUpdated: Subject<OrderDto> = new Subject<OrderDto>();
-  itemAdded: Subject<OrderDto> = new Subject<OrderDto>();
+  // itemUpdated: Subject<OrderDto> = new Subject<OrderDto>();
+  // itemAdded: Subject<OrderDto> = new Subject<OrderDto>();
+  orderChanges: Subject<string> = new Subject<string>();
+  tradeChanges: Subject<string> = new Subject<string>();
 
   constructor() {
     this.connection = new HubConnectionBuilder()
@@ -22,12 +24,12 @@ export class SignalRService {
   registerOnEvents() {
     this.connection.on('SendOrderChanges', item => {
       console.log('SendOrderChanges');
-      this.itemAdded.next(item);
+      this.orderChanges.next(item);
     });
 
     this.connection.on('SendTradeChanges', item => {
       console.log('SendTradeChanges');
-      this.itemUpdated.next(item);
+      this.tradeChanges.next(item);
     });
   }
 }
