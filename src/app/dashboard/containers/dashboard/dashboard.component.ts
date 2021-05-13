@@ -5,6 +5,8 @@ import { DashboardService } from './../../dashboard.service';
 import { PeriodService } from '../../../shared/services/period.service';
 import { DashboardData } from '@models/dashboardData';
 import { SignalRService } from 'app/dashboard/signalr.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderTicketDialogComponent } from 'app/dashboard/components/orderTicket-dialog/orderTicket-dialog.component';
 
 @Component({
   selector: 'dashboard',
@@ -21,7 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   orderUpdatesTitle: string = 'Order updates';
   tradeUpdatesTitle: string = 'Trade updates';
 
-  constructor(private dashboard: DashboardService, private periodService: PeriodService,private readonly signalrService: SignalRService) {
+  constructor(private dashboard: DashboardService, private periodService: PeriodService,private readonly signalrService: SignalRService,private dialog: MatDialog) {
 
     signalrService.orderChanges.subscribe(item => {
       //this.items = [item, ...this.items];
@@ -51,6 +53,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.dashBoardSub.unsubscribe();
   }
 
-  
+  createOrder(): void {
+    const editingDialog = this.dialog.open(OrderTicketDialogComponent);
+    editingDialog.afterClosed().subscribe((res) => {} );
+   }
 
 }

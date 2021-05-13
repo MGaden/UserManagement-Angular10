@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { Period } from '@models/period';
 import { DashboardData } from '@models/dashboardData';
@@ -27,6 +27,12 @@ export class DashboardApi {
 
   getOrders(): Observable<[]> {
     return this.http.get<[]>(`${AppConsts.bussinessApiUrl}${AppConsts.orderUrl}/get`);
+  }
+
+  createOrder(createOrderRequest: any): Observable<boolean> {
+
+    return this.http.post<any>(`${AppConsts.bussinessApiUrl}${AppConsts.orderUrl}/insert`, createOrderRequest)
+      .pipe(tap(data => {}));
   }
 
 

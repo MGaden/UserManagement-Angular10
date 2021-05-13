@@ -13,6 +13,7 @@ import { TranslocoRootModule } from 'app/transloco/transloco-root.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ResizableModule } from 'angular-resizable-element';
 import { WidgetComponent } from './components/widget/widget.component';
+import { OrderTicketDialogComponent } from './components/orderTicket-dialog/orderTicket-dialog.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { WidgetComponent } from './components/widget/widget.component';
     DashboardComponent,
     SummaryComponent,
     DashBoardProgressComponent,
-    WidgetComponent
+    WidgetComponent,
+    OrderTicketDialogComponent
   ],
   exports: [ DashboardComponent ],
   providers: [ DashboardService, DashboardApi ]

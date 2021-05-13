@@ -20,9 +20,15 @@ export class SummaryComponent implements OnInit {
   @Input()
   dashboardData: DashboardData;
 
-  constructor(private dashboardApi: DashboardApi,
+  constructor(
+    private readonly signalrService: SignalRService,private dashboardApi: DashboardApi,
   ) {
-
+    signalrService.orderChanges.subscribe(item => {
+      //this.items = [item, ...this.items];
+      let orders = JSON.parse(item);
+       this.items = this.items.filter(x => x.OrderID !== orders[0].OrderID);
+      this.items = [orders[0], ...this.items];
+    });
   }
   
   getOrders()
